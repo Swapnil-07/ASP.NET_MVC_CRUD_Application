@@ -1,0 +1,72 @@
+﻿@*@model IEnumerable<Crud_App_MVC.Models.Emp>*@
+@model IEnumerable <Crud_App_MVC.Models.DataModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.emp_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.is_fulltime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.countryname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.statename)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.city)
+        </th>
+        <th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.emp_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.is_fulltime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.countryname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.statename)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.city)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.emp_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.emp_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.emp_id })
+            </td>
+        </tr>
+    }
+
+</table>

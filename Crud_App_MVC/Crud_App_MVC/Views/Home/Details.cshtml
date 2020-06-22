@@ -1,0 +1,83 @@
+﻿@model Crud_App_MVC.Models.DataModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.emp_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emp_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_fulltime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_fulltime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.countryname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.countryname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.statename)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.statename)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.city)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.city)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.image_path)
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(@Model.image_path)" alt="Profile Image" style="height:100px; width:80px;" />
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.emp_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
