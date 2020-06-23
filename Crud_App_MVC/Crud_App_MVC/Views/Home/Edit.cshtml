@@ -33,6 +33,7 @@
                 Male
                 @Html.RadioButtonFor(model => model.gender, "Female")
                 Female
+                @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -68,7 +69,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.state, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.state, new SelectList(""), "--Select State--", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.state, ViewBag.StateList as SelectList, "--Select State--", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.state, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -84,8 +85,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.image_path, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" name="image" />
+                <input type="file" name="image" id="fu_image" />
                 @Html.ValidationMessageFor(model => model.image_path, "", new { @class = "text-danger" })
+                
             </div>
         </div>
 
@@ -117,7 +119,6 @@
                 dataType: "json",
                 success: function (response) {
                     $("#state").empty();
-                    $("#state").append('<option selected="selected" value="0">select state</option>');
                     $.each(response, function () {
                         $("#state").append($("<option></option>").val(this.state_id).html(this.state_name));
                     });

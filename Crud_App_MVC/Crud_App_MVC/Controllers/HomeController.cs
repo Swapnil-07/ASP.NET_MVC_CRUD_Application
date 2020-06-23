@@ -53,10 +53,16 @@ namespace Crud_App_MVC.Controllers
             return countries;
         }
 
+        public List<State> GetStates(int c_id)
+        {
+            List<State> states = db.States.Where(x => x.country_id == c_id).ToList();
+            return states;
+        }
+
         [HttpPost]
         public JsonResult GetStateList(int c_id)
         {
-            List<State> states = db.States.Where(x => x.country_id == c_id).ToList();
+            List<State> states = GetStates(c_id);
             return Json(states);
         }
 
@@ -67,10 +73,10 @@ namespace Crud_App_MVC.Controllers
         {
             if (employee.image != null)
             {
-                string path = Server.MapPath("~/App_Data/Images");
                 string fileName = Path.GetFileName(employee.image.FileName);
-                employee.image_path = Path.Combine(path, fileName);
-                employee.image.SaveAs(employee.image_path);
+                employee.image_path = fileName;
+                string path = Path.Combine(Server.MapPath("~/App_Data/Images"), fileName);
+                employee.image.SaveAs(path);
 
                 if (ModelState.IsValid)
                 {
@@ -124,10 +130,13 @@ namespace Crud_App_MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
+            
             ViewBag.CountryList = new SelectList(GetCountryList(), "country_id", "country_name");
 
             Emp employee = db.Emps.Find(id);
+
+            ViewBag.StateList = new SelectList(GetStates(Convert.ToInt32(employee.country)), "state_id", "state_name");
+
             if (employee == null)
             {
                 return HttpNotFound();
@@ -142,10 +151,10 @@ namespace Crud_App_MVC.Controllers
         {
             if(employee.image != null)
             {
-                string path = Server.MapPath("~/App_Data/Images");
                 string fileName = Path.GetFileName(employee.image.FileName);
-                employee.image_path = Path.Combine(path, fileName);
-                employee.image.SaveAs(employee.image_path);
+                employee.image_path = fileName;
+                string path = Path.Combine(Server.MapPath("~/App_Data/Images"), fileName);
+                employee.image.SaveAs(path);
             }
             
             if (ModelState.IsValid)

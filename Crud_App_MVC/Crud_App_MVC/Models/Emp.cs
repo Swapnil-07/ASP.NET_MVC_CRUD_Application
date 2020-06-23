@@ -12,6 +12,7 @@ namespace Crud_App_MVC.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Web;
 
@@ -19,24 +20,31 @@ namespace Crud_App_MVC.Models
     {
         public int emp_id { get; set; }
 
+        [Required]
         [DisplayName("Name")]
         public string emp_name { get; set; }
 
+        [Required]
         [DisplayName("Gender")]
         public string gender { get; set; }
 
+        [Required]
         [DisplayName("Is Fulltime")]
         public bool is_fulltime { get; set; }
 
+        [Required]
         [DisplayName("Home/Street Address")]
         public string address { get; set; }
 
+        [Required]
         [DisplayName("Country")]
         public string country { get; set; }
 
+        [Required]
         [DisplayName("State")]
         public string state { get; set; }
 
+        [Required]
         [DisplayName("City")]
         public string city { get; set; }
 
