@@ -37,7 +37,6 @@ namespace Crud_App_MVC.Controllers
                     is_fulltime = emp.is_fulltime
                 });
             }
-            //dataModel.countries = db.Countries.ToList();
             return View(dataModels);
         }
 
@@ -75,7 +74,7 @@ namespace Crud_App_MVC.Controllers
             {
                 string fileName = Path.GetFileName(employee.image.FileName);
                 employee.image_path = fileName;
-                string path = Path.Combine(Server.MapPath("~/App_Data/Images"), fileName);
+                string path = Path.Combine(Server.MapPath("~/Images"), fileName);
                 employee.image.SaveAs(path);
 
                 if (ModelState.IsValid)
@@ -153,7 +152,7 @@ namespace Crud_App_MVC.Controllers
             {
                 string fileName = Path.GetFileName(employee.image.FileName);
                 employee.image_path = fileName;
-                string path = Path.Combine(Server.MapPath("~/App_Data/Images"), fileName);
+                string path = Path.Combine(Server.MapPath("~/Images"), fileName);
                 employee.image.SaveAs(path);
             }
             

@@ -5,78 +5,96 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Employee</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.emp_name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.emp_name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.gender)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.gender)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.is_fulltime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.is_fulltime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.address)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.address)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.countryname)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.countryname)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.statename)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.statename)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.city)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.city)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.image_path)
-        </dt>
-
-        <dd>
-            <img src="@Url.Content("~/App_Data/Images/" + @Model.image_path)" alt="Profile Image" />
-            @*<img src="~/App_Data/Images/cretor.jpg" alt="alt Image" />*@
-        </dd>
-    </dl>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.emp_id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="wrapper wrapper--w680">
+    <div class="card card-4">
+        <div class="card-body">
+            <h2>Details</h2>
+            <hr />
+            <br />
+            <div class="row row-space">
+                <div class="col-2">
+                    @Html.DisplayNameFor(model => model.emp_name)
+                </div>
+                <div class="col-2">
+                    @Html.DisplayFor(model => model.emp_name)
+                </div>
+            </div>
+            <br />
+            <div class="row row-space">
+                <div class="col-2">
+                    @Html.DisplayNameFor(model => model.gender)
+                </div>
+                <div class="col-2">
+                    @Html.DisplayFor(model => model.gender)
+                </div>
+            </div>
+            <br />
+            <div class="row row-space">
+                <div class="col-2">
+                    @Html.DisplayNameFor(model => model.is_fulltime)
+                </div>
+                <div class="col-2">
+                    @if (Model.is_fulltime == true)
+                    {
+                        <label>Yes</label>
+                    }
+                    else
+                    {
+                        <label>No</label>
+                    }
+                </div>
+            </div>
+            <br />
+            <div class="row row-space">
+                <div class="col-2">
+                    @Html.DisplayNameFor(model => model.address)
+                </div>
+                <div class="col-2">
+                    @Html.DisplayFor(model => model.address)
+                </div>
+            </div>
+            <br />
+            <div class="row row-space">
+                <div class="col-2">
+                    @Html.DisplayNameFor(model => model.city)
+                </div>
+                <div class="col-2">
+                    @Html.DisplayFor(model => model.city)
+                </div>
+            </div>
+            <br />
+            <div class="row row-space">
+                <div class="col-2">
+                    @Html.DisplayNameFor(model => model.statename)
+                </div>
+                <div class="col-2">
+                    @Html.DisplayFor(model => model.statename)
+                </div>
+            </div>
+            <br />
+            <div class="row row-space">
+                <div class="col-2">
+                    @Html.DisplayNameFor(model => model.countryname)
+                </div>
+                <div class="col-2">
+                    @Html.DisplayFor(model => model.countryname)
+                </div>
+            </div>
+            <br />
+            <div class="row row-space">
+                <div class="col-2">
+                    @Html.DisplayNameFor(model => model.image_path)
+                </div>
+                <div class="col-2">
+                    <img src="@Url.Content("~/Images/")@Model.image_path" alt="Profile Image" height="100px" width="200px  />
+                </div>
+            </div>
+            <div class="row row-space">
+            </div>
+        </div>
+        <div>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.emp_id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</div>

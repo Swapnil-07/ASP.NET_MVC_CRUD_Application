@@ -1,72 +1,75 @@
-﻿@*@model IEnumerable<Crud_App_MVC.Models.Emp>*@
-@model IEnumerable <Crud_App_MVC.Models.DataModel>
+﻿@model IEnumerable <Crud_App_MVC.Models.DataModel>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <div class="wrapper wrapper--w960">
+        <div class="card card-4">
+            <div class="card-body">
+                <h2>Index</h2>
+                <hr />
+                <div class="col-sm-3 p-l-0">
+                    <p>
+                        <input type="button" value="Create New" class=" btn-warning" onclick="location.href='@Url.Action("Create", "Home")'" />
+                    </p>
+                </div>
+                
+                <table class="table table-striped table-hover">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.emp_name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.gender)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.is_fulltime)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.countryname)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.statename)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.city)
+                        </th>
+                        <th>
+                        <th></th>
+                    </tr>
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.emp_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.gender)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.is_fulltime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.countryname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.statename)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.city)
-        </th>
-        <th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.emp_name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.gender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.is_fulltime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.countryname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.statename)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.city)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.emp_id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.emp_id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.emp_id })
-            </td>
-        </tr>
-    }
-
-</table>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.emp_name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.gender)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.is_fulltime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.countryname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.statename)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.city)
+                            </td>
+                            <td>
+                                <input type="button" value="Edit" class=" btn-primary" onclick="location.href='@Url.Action("Edit", "Home", new { id=item.emp_id})'" />
+                                <input type="button" value="Info" class=" btn-info" onclick="location.href='@Url.Action("Details", "Home", new { id=item.emp_id})'" />
+                                <input type="button" value="Delete" class=" btn-danger" onclick="location.href='@Url.Action("Delete", "Home", new { id=item.emp_id})'" />    
+                            </td>
+                        </tr>
+                    }
+                  
+                </table>
+                <hr />
+            </div>
+        </div>
+    </div>

@@ -5,103 +5,132 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<div class="wrapper wrapper--w680">
+    <div class="card card-4">
+        <div class="card-body">
+            <h2>Edit</h2>
+            <hr /><br />
+            @using (Html.BeginForm("Edit", "Home", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
 
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.emp_id)
+                @Html.HiddenFor(model => model.image_path)
 
-@using (Html.BeginForm("Edit", "Home", FormMethod.Post, new { @enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
+                <div class="row row-space">
+                    <div class="col-2">
+                        <div class="input-group">
+                            @Html.LabelFor(model => model.emp_name, htmlAttributes: new { @class = "label" })
+                            @Html.EditorFor(model => model.emp_name, new { htmlAttributes = new { @class = "input--style-4" } })
+                            @Html.ValidationMessageFor(model => model.emp_name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-2">
 
-    <div class="form-horizontal">
-        <h4>Employee</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.emp_id)
-        @Html.HiddenFor(model => model.image_path)
-        <div class="form-group">
-            @Html.LabelFor(model => model.emp_name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.emp_name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.emp_name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.gender, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.RadioButtonFor(model => model.gender, "Male")
-                Male
-                @Html.RadioButtonFor(model => model.gender, "Female")
-                Female
-                @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.is_fulltime, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox" style="padding-left: 20px;">
-                    @Html.CheckBoxFor(model => model.is_fulltime)
-                    @Html.ValidationMessageFor(model => model.is_fulltime, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="row row-space">
+                    <div class="col-2">
+                        <div class="input-group">
+                            @Html.LabelFor(model => model.gender, htmlAttributes: new { @class = "label" })
+                            <div class="p-t-10">
+                                <label class="radio-container m-r-45">
+                                    Male
+                                    @Html.RadioButtonFor(model => model.gender, "Male")
+                                    <span class="checkmark"></span>
+                                </label>
 
-        @if (ViewBag.CountryList != null)
-        {
-            <div class="form-group">
-                @Html.LabelFor(model => model.country, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.country, ViewBag.CountryList as SelectList, "--Select Country--", new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.country, "", new { @class = "text-danger" })
+                                <label class="radio-container m-r-45">
+                                    Female
+                                    @Html.RadioButtonFor(model => model.gender, "Female")
+                                    <span class="checkmark"></span>
+                                </label>
+                                @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="input-group">
+                            @Html.LabelFor(model => model.is_fulltime, htmlAttributes: new { @class = "label" })
+                            
+                                @Html.CheckBoxFor(model => model.is_fulltime, new {style ="height:30px; width:30px;"})
+                                <label>(Tick if Yes)</label>
+                            
+                            @Html.ValidationMessageFor(model => model.is_fulltime, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
                 </div>
-            </div>
-        }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.state, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.state, ViewBag.StateList as SelectList, "--Select State--", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.state, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="row row-space">
+                    <div class="col-2">
+                        <div class="input-group">
+                            @Html.LabelFor(model => model.country, htmlAttributes: new { @class = "label" })
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                @Html.DropDownListFor(model => model.country, ViewBag.CountryList as SelectList, "--Select Country--")
+                                @Html.ValidationMessageFor(model => model.country, "", new { @class = "text-danger" })
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.city, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    <div class="col-2">
+                        <div class="input-group">
+                            @Html.LabelFor(model => model.state, htmlAttributes: new { @class = "label" })
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                @Html.DropDownListFor(model => model.state, ViewBag.StateList as SelectList, "--Select State--", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.state, "", new { @class = "text-danger" })
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.image_path, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" name="image" id="fu_image" />
-                @Html.ValidationMessageFor(model => model.image_path, "", new { @class = "text-danger" })
-                
-            </div>
-        </div>
+                <div class="row row-space">
+                    <div class="col-2">
+                        <div class="input-group">
+                            @Html.LabelFor(model => model.city, htmlAttributes: new { @class = "label" })
+                            @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "input--style-4" } })
+                            @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Update" class="btn btn-default" />
+                    <div class="col-2">
+                        <div class="input-group">
+                            @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "label" })
+                            @Html.TextAreaFor(model => model.address, new { style = "width: 100%; height:50px; background-color:#fafafa;" })
+                            @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row row-space">
+                    <div class="col-2">
+                        <img src="@Url.Content("~/Images/")@Model.image_path" alt="Profile Image" height="100px" width="200px" />
+                    </div>
+                    <div class="col-2">
+                        <div class="input-group">
+                            @Html.LabelFor(model => model.image_path, htmlAttributes: new { @class = "label" })
+                            <input type="file" name="image" id="fu_image" />
+                            @Html.ValidationMessageFor(model => model.image_path, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-t-15">
+                    <input type="submit" value="Update" id="btn_update" class="btn btn--radius-2 btn--blue" />
+                </div>
+
+            }
+            <br />
+            <div>
+                @Html.ActionLink("Back to List", "Index")
             </div>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
